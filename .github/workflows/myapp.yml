@@ -24,6 +24,8 @@ jobs:
           python -m pip install yfinance
 
       - name: execute py script
+        env: 
+          SOME_SECRET: ${{ secrets.SOME_SECRET }}
         run: python myapp.py
 
       - name: commit files
@@ -36,6 +38,7 @@ jobs:
       - name: push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: main
   
   deploy:
