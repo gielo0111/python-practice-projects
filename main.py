@@ -1,31 +1,30 @@
-import flet as ft
+import yfinance as yf
+import streamlit as st
+import pandas as pd
 
+st.write("""
+# Simple Stock Price App
+         
+Shown are the stock closing price and volume of Google!
+""")
 
-def main(page: ft.Page):
-    page.title = "Flet counter example"
-    page.theme_mode = ft.ThemeMode.LIGHT
-    page.vertical_alignment = ft.MainAxisAlignment.CENTER
+# https://towardsdatascience.com/how-to-get-stock-data-using-python-c0de1df17e75
 
-    txt_number = ft.TextField(value="0", text_align=ft.TextAlign.RIGHT, width=100)
+#define the ticker symbol
+tickerSymbol='GOOGL'
 
-    def minus_click(e):
-        txt_number.value = str(int(txt_number.value) - 1)
-        page.update()
+#get data on this ticker
+tickerData = yf.Ticker(tickerSymbol)
 
-    def plus_click(e):
-        txt_number.value = str(int(txt_number.value) + 1)
-        page.update()
+#get the historiucal prices for this sticker
+tickerDF = tickerData.history(period='1d', start='2010-5-31', end='2020-5-31')
 
-    page.add(
-        ft.Row(
-            [
-                ft.IconButton(ft.icons.REMOVE, on_click=minus_click),
-                txt_number,
-                ft.IconButton(ft.icons.ADD, on_click=plus_click),
-            ],
-            alignment=ft.MainAxisAlignment.CENTER,
-        )
-    )
-
-
-ft.app(main, view=ft.AppView.WEB_BROWSER)
+#open high low close bolume dividends stock splits
+st.write("""
+# Closing Price
+""")
+st.line_chart(tickerDF.Close)
+st.write("""
+# Volume Price
+""")
+st.line_chart(tickerDF.Volume)
