@@ -26,7 +26,7 @@ jobs:
       - name: execute py script
         env: 
           SOME_SECRET: ${{ secrets.SOME_SECRET }}
-        run: python main.py
+        run: streamlit run main.py
 
       - name: commit files
         run: |
