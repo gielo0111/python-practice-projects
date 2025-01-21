@@ -28,7 +28,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install streamlit
           python -m pip install yfinance
-          python -m pip install flet
 
       - name: execute py script
         env: 
