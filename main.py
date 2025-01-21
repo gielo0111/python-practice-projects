@@ -8,7 +8,7 @@ st.write("""
 Shown are the stock closing price and volume of Google!
 """)
 st.write("""
-Gielo Fernandez
+Gielo Joseph Fernandez
 """    
 )
 
