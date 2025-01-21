@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: checkout repo content
-        uses: actions/checkout@v4
+        uses: actions/checkout@v3
 
       - name: setup python 3
         uses: actions/setup-python@v3
@@ -57,13 +57,19 @@ jobs:
 
     steps:
       - name: Setup Pages
-        uses: actions/configure-pages@v5
-
-
+        uses: actions/configure-pages@v4
+      - name: Checkout
+        uses: actions/checkout@v4
+       - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          # Upload entire repository
+          path: '.'
+          
       - name: Deploy to Github Pages
         if: github.event_name == 'push'
         id: deployment
-        uses: actions/deploy-pages@v4.0.5
+        uses: actions/deploy-pages@v4
 
 
 
