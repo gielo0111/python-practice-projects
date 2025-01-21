@@ -37,6 +37,31 @@ jobs:
         uses: ad-m/github-push-action@v0.6.0
         with:
           branch: main
+  
+  deploy:
+    needs: build
+
+    runs-on: ubuntu-latest
+
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.output.page_url }}
+
+    steps:
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+
+      - name: Deploy to Github Pages
+        if: github.event_name == 'push'
+        id: deployment
+        uses: actions/deploy-pages@v4.0.5
+        with:
+          artifact_name: web-build-artifact
 
 
 
