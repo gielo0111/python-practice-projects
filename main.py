@@ -7,6 +7,10 @@ st.write("""
          
 Shown are the stock closing price and volume of Google!
 """)
+st.write("""
+Gielo Fernandez
+"""    
+)
 
 # https://towardsdatascience.com/how-to-get-stock-data-using-python-c0de1df17e75
 
